@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga CL Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial Black', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .poster {
+            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 4px solid #f39c12;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .poster::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(243, 156, 18, 0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            background: linear-gradient(90deg, #f39c12, #e74c3c, #f39c12);
+            background-size: 200% auto;
+            animation: gradientShift 3s linear infinite;
+            padding: 25px 20px;
+            border-radius: 20px;
+            border: 3px solid #fff;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .rules-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(243, 156, 18, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .rule-item {
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.2), rgba(231, 76, 60, 0.2));
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #f39c12;
+            color: #fff;
+            font-size: 0.9em;
+            line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .rule-icon {
+            font-size: 1.3em;
+            margin-right: 12px;
+            min-width: 25px;
+        }
+        
+        .banned-mercs {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3));
+            padding: 12px;
+            border-radius: 10px;
+            margin-top: 8px;
+            font-size: 0.85em;
+            border: 2px solid #e74c3c;
+        }
+        
+        .register-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            border: none;
+            padding: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 3px solid #fff;
+            margin-bottom: 15px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+        
+        .register-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(46, 204, 113, 0.6);
+        }
+        
+        .register-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            border-radius: 15px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.85em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            border: 2px solid #fff;
+        }
+        
+        .info-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .info-box h3 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .info-box strong {
+            color: #e74c3c;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .register-btn {
+                font-size: 1.2em;
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="poster">
+        <div class="content">
+            <div class="header">
+                <h1>⚔️ LIGA CL ⚔️</h1>
+                <div class="subtitle">RULES & REGULATIONS</div>
+            </div>
+            
+            <div class="rules-container">
+                <div class="rule-item">
+                    <span class="rule-icon">🖥️</span>
+                    <div><strong>Server:</strong> SAVIOR</div>
+                </div>
+                
+                <div class="rule-item">
+                    <span class="rule-icon">⚔️</span>
+                    <div><strong>Mode:</strong> 1 vs 1</div>
+                </div>
+                
+                <div class="rule-item">
+                    <span class="rule-icon">🚫</span>
+                    <div>Satu Party <strong>TIDAK BOLEH</strong> Membawa Merc Yang Sama</div>
+                </div>
+                
+                <div class="rule-item">
+                    <span class="rule-icon">⛔</span>
+                    <div style="width: 100%;">
+                        <strong>Merc Yang DIBAN:</strong>
+                        <div class="banned-mercs">
+                            Arthur • Hippo • Sae • Grim Reaper • Spartacus • Merlin • Tania • Jeon • Jesica
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rule-item">
+                    <span class="rule-icon">👕</span>
+                    <div><strong>Lepas Semua Equip Di Badan (POLOSAN)</strong></div>
+                </div>
+                
+                <div class="rule-item">
+                    <span class="rule-icon">9️⃣</span>
+                    <div><strong>WAJIB 9 MERC</strong></div>
+                </div>
+                
+                <div class="rule-item">
+                    <span class="rule-icon">🦸</span>
+                    <div><strong>Boleh Hero Kalau Sisa 3 Merc</strong></div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                ⚠️ Rules Sewaktu-waktu Bisa Berubah<br>
+                Akan Diinfokan Kembali Bila Ada Perubahan
+            </div>
+        </div>
+    </div>
+    
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeMJvSy7kkj4Oix8Cczs6DWq_IBkPWjHNa_HnFQWfBLDOJWXQ/viewform?usp=header" target="_blank" class="register-btn">
+        🎮 DAFTAR SEKARANG 🎮
+    </a>
+    
+    <div class="info-box">
+        <h3>✅ Poster Siap Digunakan!</h3>
+        <p>Tombol <strong>"DAFTAR SEKARANG"</strong> sudah terhubung dengan Google Form!</p>
+        <p style="margin-top: 15px;">📊 <strong>Cara Lihat Pendaftaran:</strong></p>
+        <p>Buka Google Form → Tab <strong>"Responses"</strong></p>
+        <p style="margin-top: 15px;">🔔 <strong>Tips:</strong> Aktifkan notifikasi email di Google Form agar dapat pemberitahuan setiap ada pendaftaran baru!</p>
+    </div>
+</body>
+</html>
